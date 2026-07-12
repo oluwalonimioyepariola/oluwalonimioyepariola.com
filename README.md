@@ -1,4 +1,4 @@
-# oluwalonimioyepariola.com
+# Oluwalonimi Oyepariola
 
 My personal portfolio — a minimal, resume-style single page built with Next.js.
 
