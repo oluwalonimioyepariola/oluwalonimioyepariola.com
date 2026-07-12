@@ -10,12 +10,12 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Oluwalonimi Oyepariola | Software Engineer",
   description:
-    "Software Engineer based in London. MSc Software Engineering at the University of East London. Building full-stack systems with Go, Node.js, PostgreSQL, React and Next.js.",
+    "Software Engineer based in London. MSc Software Engineering at the University of East London. Building full-stack systems with Node.js, PostgreSQL, React and Next.js.",
   metadataBase: new URL("https://oluwalonimioyepariola.com"),
   openGraph: {
     title: "Oluwalonimi Oyepariola | Software Engineer",
     description:
-      "Software Engineer based in London. Full-stack systems with Go, Node.js, PostgreSQL, React and Next.js.",
+      "Software Engineer based in London. Full-stack systems with Node.js, PostgreSQL, React and Next.js.",
     type: "website",
   },
 };
