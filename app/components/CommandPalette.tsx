@@ -61,13 +61,6 @@ export default function CommandPalette() {
     return () => observer.disconnect();
   }, []);
 
-  // Delay the action so the palette has unmounted before it runs —
-  // window.print() is synchronous and would otherwise capture the open palette.
-  const run = (action: () => void) => {
-    setOpen(false);
-    setTimeout(action, 200);
-  };
-
   const revealClass = revealed
     ? "opacity-100"
     : "pointer-events-none translate-y-2 opacity-0";
@@ -146,7 +139,13 @@ export default function CommandPalette() {
                 className="text-xs text-faint [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5"
               >
                 <Command.Item
-                  onSelect={() => run(() => window.print())}
+                  // Synchronous inside the tap gesture — mobile Safari drops
+                  // window.print() after a setTimeout. The palette overlay has
+                  // print:hidden, so it never shows up in the printout.
+                  onSelect={() => {
+                    setOpen(false);
+                    window.print();
+                  }}
                   className="cursor-pointer rounded px-2 py-2 text-sm text-soft data-[selected=true]:bg-tagbg data-[selected=true]:text-ink"
                 >
                   Print
