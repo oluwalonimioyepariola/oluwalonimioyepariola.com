@@ -24,6 +24,11 @@ function Kbd({ children }: { children: React.ReactNode }) {
 export default function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [revealed, setRevealed] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -124,10 +129,13 @@ export default function CommandPalette() {
               if (e.key === "Escape") setOpen(false);
             }}
           >
+            {/* text-base (16px) on mobile: iOS Safari auto-zooms the page when
+                focusing an input with a font smaller than 16px. No autofocus on
+                touch devices so the keyboard doesn't cover the actions. */}
             <Command.Input
-              autoFocus
+              autoFocus={!isTouch}
               placeholder="Search command"
-              className="w-full border-b border-line bg-transparent px-4 py-3 text-sm text-ink outline-none placeholder:text-faint"
+              className="w-full border-b border-line bg-transparent px-4 py-3 text-base text-ink outline-none placeholder:text-faint sm:text-sm"
             />
             <Command.List className="max-h-72 overflow-y-auto p-2">
               <Command.Empty className="px-3 py-6 text-center text-sm text-faint">
