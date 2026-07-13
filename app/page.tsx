@@ -225,7 +225,7 @@ function SkillPill({ name, icon }: { name: string; icon?: string }) {
       {icon && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={`https://cdn.simpleicons.org/${icon}`}
+          src={`/icons/${icon}.svg`}
           alt=""
           width={14}
           height={14}
