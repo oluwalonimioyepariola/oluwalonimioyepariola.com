@@ -154,7 +154,16 @@ export default function CommandPalette() {
                 {links.map((l) => (
                   <Command.Item
                     key={l.label}
-                    onSelect={() => run(() => window.open(l.href, "_blank"))}
+                    // Links must open synchronously inside the tap gesture:
+                    // mobile Safari blocks window.open after a setTimeout.
+                    onSelect={() => {
+                      if (l.href.startsWith("mailto")) {
+                        window.location.href = l.href;
+                      } else {
+                        window.open(l.href, "_blank", "noopener,noreferrer");
+                      }
+                      setOpen(false);
+                    }}
                     className="cursor-pointer rounded px-2 py-2 text-sm text-soft data-[selected=true]:bg-tagbg data-[selected=true]:text-ink"
                   >
                     {l.label}
