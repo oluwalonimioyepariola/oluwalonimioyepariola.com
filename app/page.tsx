@@ -91,6 +91,7 @@ const projects = [
   {
     name: "Olai",
     status: "In progress",
+    link: "https://github.com/oluwalonimioyepariola/olai",
     description:
       "AI sales chatbot SaaS. Businesses train a chatbot on their own content, embed it on their site to qualify leads and book appointments, with real-time handoff to a live agent. Next.js 15 with Prisma and PostgreSQL (pgvector) for retrieval-augmented responses, streamed OpenAI output, Pusher for live chat, Stripe for billing and Docker for local development.",
     tags: ["Next.js", "TypeScript", "PostgreSQL", "OpenAI", "Docker", "Stripe"],
@@ -382,7 +383,18 @@ export default function Home() {
                 className="rounded-lg border border-line p-5"
               >
                 <h3 className="text-sm font-semibold text-ink">
-                  {p.name}{" "}
+                  {p.link ? (
+                    <a
+                      href={p.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
+                    >
+                      {p.name}
+                    </a>
+                  ) : (
+                    p.name
+                  )}{" "}
                   <span className="ml-1 rounded-full border border-line px-2 py-0.5 text-xs font-normal text-faint">
                     {p.status}
                   </span>
