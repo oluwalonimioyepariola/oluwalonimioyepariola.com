@@ -199,7 +199,7 @@ const skills: {
 
 const education = [
   {
-    period: "2026 - 2028",
+    period: "2026",
     school: "University of East London",
     degree: "MSc Software Engineering",
     detail: "Modules: Cloud Computing (96%); Software Testing and Quality Assurance (91%).",
