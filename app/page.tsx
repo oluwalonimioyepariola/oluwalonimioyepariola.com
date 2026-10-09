@@ -87,11 +87,35 @@ const experience = [
   },
 ];
 
-const projects = [
+const projects: {
+  name: string;
+  status: string;
+  link?: string;
+  links?: { label: string; href: string }[];
+  description: string;
+  tags: string[];
+}[] = [
+  {
+    name: "Cielo",
+    status: "Live on Android",
+    link: "https://cielo.oluwalonimioyepariola.com",
+    links: [
+      { label: "Website", href: "https://cielo.oluwalonimioyepariola.com" },
+      { label: "Code", href: "https://github.com/oluwalonimioyepariola/cielo" },
+      {
+        label: "Download APK",
+        href: "https://github.com/oluwalonimioyepariola/cielo/releases/latest/download/cielo.apk",
+      },
+    ],
+    description:
+      "Personal Spanish-learning app. Import a WhatsApp chat and Cielo builds a course from the phrases you actually use, without the chat ever leaving the phone. React Native and Expo with on-device parsing and ranking in TypeScript, FSRS spaced repetition in SQLite, accent- and typo-tolerant grading, native text-to-speech, and an API with Prisma and Neon Postgres for progress backup.",
+    tags: ["React Native", "Expo", "TypeScript", "SQLite", "Prisma", "PostgreSQL"],
+  },
   {
     name: "Olai",
     status: "In progress",
     link: "https://github.com/oluwalonimioyepariola/olai",
+    links: [{ label: "Code", href: "https://github.com/oluwalonimioyepariola/olai" }],
     description:
       "AI sales chatbot SaaS. Businesses train a chatbot on their own content, embed it on their site to qualify leads and book appointments, with real-time handoff to a live agent. Next.js 15 with Prisma and PostgreSQL (pgvector) for retrieval-augmented responses, streamed OpenAI output, Pusher for live chat, Stripe for billing and Docker for local development.",
     tags: ["Next.js", "TypeScript", "PostgreSQL", "OpenAI", "Docker", "Stripe"],
@@ -120,6 +144,14 @@ const skills: {
         { name: "Next.js", icon: "nextdotjs" },
         { name: "Vite", icon: "vite" },
         { name: "Tailwind CSS", icon: "tailwindcss" },
+      ],
+    },
+    {
+      category: "Mobile Development",
+      items: [
+        { name: "React Native", icon: "react" },
+        { name: "Expo" },
+        { name: "SQLite" },
       ],
     },
     {
@@ -407,6 +439,21 @@ export default function Home() {
                     <Tag key={t}>{t}</Tag>
                   ))}
                 </div>
+                {p.links && (
+                  <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                    {p.links.map((l) => (
+                      <a
+                        key={l.label}
+                        href={l.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-soft underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-ink"
+                      >
+                        {l.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
